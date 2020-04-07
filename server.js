@@ -19,8 +19,11 @@ const indexRoutes = require('./routes/index');
 const PORT = process.env.PORT || 3001
 
 // mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://dbUser:200194676abc@cluster0-nnpyy.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://dbUser:200194676abc@cluster0-nnpyy.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true})
+    .then(() => console.log(`Database connected`))
+    .catch(err => console.log(`Database connection error: ${err.message}`));
 mongoose.set('useFindAndModify', false);
+
 app.use(bodyParser.urlencoded({ extended: true}));
 app.set('view engine', 'ejs')
 app.use(express.static(__dirname + '/public'))
@@ -34,6 +37,7 @@ app.use(require('express-session')({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
