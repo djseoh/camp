@@ -16,10 +16,10 @@ const commentRoutes = require('./routes/comments');
 const campgroundRoutes = require('./routes/campgrounds');
 const indexRoutes = require('./routes/index');
 
+mongoose.Promise = global.Promise;
 const PORT = process.env.PORT || 3001
-
-// mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect('mongodb+srv://dbUser:200194676abc@cluster0-nnpyy.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true})
+const databaseUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/camp'
+mongoose.connect( databaseUri, { useNewUrlParser: true, useUnifiedTopology: true, useMongoClient: true})
     .then(() => console.log(`Database connected`))
     .catch(err => console.log(`Database connection error: ${err.message}`));
 mongoose.set('useFindAndModify', false);
