@@ -19,7 +19,7 @@ const indexRoutes = require('./routes/index');
 mongoose.Promise = global.Promise;
 const PORT = process.env.PORT || 3001
 const databaseUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/camp'
-mongoose.connect( databaseUri, { useNewUrlParser: true, useUnifiedTopology: true, useMongoClient: true})
+mongoose.connect( databaseUri, { useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log(`Database connected`))
     .catch(err => console.log(`Database connection error: ${err.message}`));
 mongoose.set('useFindAndModify', false);
