@@ -18,7 +18,8 @@ const indexRoutes = require('./routes/index');
 
 const PORT = process.env.PORT || 3001
 
-mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://dbUser:200194676abc@cluster0-nnpyy.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({ extended: true}));
 app.set('view engine', 'ejs')
